@@ -173,11 +173,34 @@ myArray = ['Bob', 'Fred'];
 let myStr: string = myArray[0];
 
 // 类类型
+// TypeScript也能够用接口明确的强制一个类去符合某种契约。
 interface ClockInterface {
     currentTime: Date;
 }
 
 class Clock implements ClockInterface {
     currentTime: Date;
+    constructor(h: number, m: number) {}
+}
+
+interface ClockInterface2 {
+    currentTime: Date;
+}
+class Clock2 implements ClockInterface {
+    currentTime: Date;
+    constructor(h: number, m: number) {}
+}
+
+// 可以在接口中描述一个方法，在类里实现它，如同下面的setTime方法一样
+interface ClockInterface {
+    currentTime: Date;
+    setTime(d: Date);
+}
+
+class Clock3 implements ClockInterface {
+    currentTime: Date;
+    setTime(d: Date) {
+        this.currentTime = d;
+    }
     constructor(h: number, m: number) {}
 }
